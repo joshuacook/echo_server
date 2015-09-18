@@ -1,6 +1,61 @@
 require 'sinatra'
 require 'json'
-get '/' do
+post '/direct' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
   content_type :json
-  { :destination_phone_number => "+13104331646"}, {:destination_phone_number => "+18004377950"}.to_json 
+  { :destination_phone_number => destination_phone_number }.to_json
 end
+
+get '/direct' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
+  content_type :json
+  { :destination_phone_number => destination_phone_number }.to_json
+end
+
+get '/promo' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
+  content_type :json
+  { :destination_phone_number => destination_phone_number }.to_json
+end
+
+post '/promo' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
+  content_type :json
+  { :destination_phone_number => destination_phone_number }.to_json
+end
+
+get '/bundle' do
+  destination_campaign_ids = ['80','81','79','34','32']
+  destination_campaign_id = destination_campaign_ids[rand(5)]
+  content_type :json
+  { :destination_campaign_id => destination_campaign_id}.to_json
+end
+
+post '/bundle' do
+  destination_campaign_ids = ['80','81','79','34','32']
+  destination_campaign_id = destination_campaign_ids[rand(5)]
+  content_type :json
+  { :destination_campaign_id => destination_campaign_id}.to_json
+end
+
+get '/bundificate' do
+  jdata = params[:data]
+  for_json = JSON.parse(jdata)
+  puts for_json
+  destination_campaign_ids = ['80','81','79','34','32']
+  destination_campaign_id = destination_campaign_ids[rand(5)]
+  # content_type :json
+  # { :destination_campaign_id => destination_campaign_id}.to_json
+end
+
+post '/bundificate' do
+  request.body.rewind
+  request_payload = JSON.parse request.body.read
+ 
+  "#{request_payload}"
+end
+
