@@ -50,7 +50,9 @@ end
 post '/bundificate' do
   request.body.rewind
   request_payload = JSON.parse request.body.read
- 
-  "#{request_payload}\n"
+  destination_campaign_ids = request_payload['ids']
+  destination_campaign_id = destination_campaign_ids[rand(5)]
+  content_type :json
+  { :destination_campaign_id_from_network => destination_campaign_id}.to_json
 end
 
