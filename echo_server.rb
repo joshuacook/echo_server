@@ -37,7 +37,7 @@ post '/bundificate' do
 end
 
 __END__
-@@layout
+@@index
 <% title="Advertiser landing page" %>
 <!doctype html>
 <html lang="en">
