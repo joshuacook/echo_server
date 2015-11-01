@@ -2,6 +2,7 @@ require 'sinatra'
 require 'json'
 require 'slim'
 
+class Main < Sinatra::Base 
 get '/' do
   slim :index
 end
@@ -42,4 +43,4 @@ post '/raise' do
   status 200
   body "Success.\n"
 end
-
+end
