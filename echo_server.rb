@@ -1,5 +1,25 @@
 require 'sinatra'
 require 'json'
+
+get '/' do
+  erb :index
+end
+
+get 'raise/200' do
+  status 200
+  body "Success."
+end
+
+get 'raise/400' do
+  status 400
+  body "<pre>gclid</pre> not found."
+end
+
+get 'raise/500' do
+  status 500
+  body "General error."
+end
+
 post '/direct' do
   destination_phone_numbers = ['+13104331646','+18004377950']
   destination_phone_number = destination_phone_numbers[rand(2)]
@@ -30,22 +50,6 @@ post '/bundificate' do
   destination_campaign_id = destination_campaign_ids[rand(5)]
   content_type :json
   { :destination_campaign_id_from_network => destination_campaign_id}.to_json
-end
-
-get '/' do
-  erb :index
-end
-
-get 'raise/200' do
-  status 200
-end
-
-get 'raise/400' do
-  status 400
-end
-
-get 'raise/500' do
-  status 500
 end
 
 __END__
