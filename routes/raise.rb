@@ -1,7 +1,8 @@
 # encoding: utf-8
 class MyApp < Sinatra::Application
-  post '/raise' do
+  get '/raise' do
+    id = param[:id]
     status 200
-    body "Success.\n"
+    body "Success. #{id} \n"
   end
 end
