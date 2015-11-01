@@ -2,7 +2,7 @@
 class MyApp < Sinatra::Application
   post '/raise' do
     id = params[:id]    
-    if id = "D7120D12-1A1AD576"
+    if id = "foo"
       status 200
       body "Success. #{id} \n"
     else
