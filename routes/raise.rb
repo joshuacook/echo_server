@@ -3,6 +3,6 @@ class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
     input = request.body.read    
-    puts input
+    input
   end
 end
