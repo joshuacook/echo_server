@@ -5,17 +5,17 @@ get '/' do
   erb :index
 end
 
-get 'raise200' do
+get '/raise/200' do
   status 200
   body "Success."
 end
 
-get 'raise400' do
+get '/raise/400' do
   status 400
   body "<pre>gclid</pre> not found."
 end
 
-get 'raise500' do
+get '/raise/500' do
   status 500
   body "General error."
 end
