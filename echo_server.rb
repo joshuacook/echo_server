@@ -5,35 +5,6 @@ get '/' do
   erb :index
 end
 
-get '/raise/200' do
-  status 200
-  body "Success.\n"
-end
-
-get '/raise/400' do
-  status 400
-  body "<pre>gclid</pre> not found.\n"
-end
-
-get '/raise/500' do
-  status 500
-  body "General error.\n"
-end
-
-post '/direct' do
-  destination_phone_numbers = ['+13104331646','+18004377950']
-  destination_phone_number = destination_phone_numbers[rand(2)]
-  content_type :json
-  { :destination_phone_number => destination_phone_number }.to_json
-end
-
-post '/promo' do
-  destination_phone_numbers = ['+13104331646','+18004377950']
-  destination_phone_number = destination_phone_numbers[rand(2)]
-  content_type :json
-  { :destination_phone_number => destination_phone_number }.to_json
-end
-
 post '/bundle' do
   request.body.rewind
   request_payload = JSON.parse request.body.read
@@ -50,6 +21,35 @@ post '/bundificate' do
   destination_campaign_id = destination_campaign_ids[rand(5)]
   content_type :json
   { :destination_campaign_id_from_network => destination_campaign_id}.to_json
+end
+
+post '/direct' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
+  content_type :json
+  { :destination_phone_number => destination_phone_number }.to_json
+end
+
+post '/promo' do
+  destination_phone_numbers = ['+13104331646','+18004377950']
+  destination_phone_number = destination_phone_numbers[rand(2)]
+  content_type :json
+  { :destination_phone_number => destination_phone_number }.to_json
+end
+
+post '/raise/200' do
+  status 200
+  body "Success.\n"
+end
+
+post '/raise/400' do
+  status 400
+  body "<pre>gclid</pre> not found.\n"
+end
+
+post '/raise/500' do
+  status 500
+  body "General error.\n"
 end
 
 __END__
