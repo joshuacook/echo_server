@@ -4,7 +4,8 @@ require 'slim'
 
 class Main < Sinatra::Base 
 get '/' do
-  slim :index
+  "foo"
+  # slim :index
 end
 
 post '/bundle' do
