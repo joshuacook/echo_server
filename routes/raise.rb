@@ -1,13 +1,8 @@
 # encoding: utf-8
 class MyApp < Sinatra::Application
   post '/raise' do
-    id = params[:id]    
-    if id == "1446415237899"
-      status 200
-      body "Success. #{id} \n"
-    else
-      status 400
-      body "Fail"
-    end
+    request.body.rewind
+    input = request.body.read    
+    puts input
   end
 end
