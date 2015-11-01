@@ -7,17 +7,17 @@ end
 
 get '/raise/200' do
   status 200
-  body "Success."
+  body "Success.\n"
 end
 
 get '/raise/400' do
   status 400
-  body "<pre>gclid</pre> not found."
+  body "<pre>gclid</pre> not found.\n"
 end
 
 get '/raise/500' do
   status 500
-  body "General error."
+  body "General error.\n"
 end
 
 post '/direct' do
