@@ -3,7 +3,7 @@ class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
     input = request.body.read    
-    input["conversion"]
+    input['conversion']
   end
 end
 
