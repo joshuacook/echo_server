@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'sinatra'
-require 'slim'
-require './main'
+root = ::File.dirname(__FILE__)
+require ::File.join( root, 'app' )
 
-run Main 
+run MyApp.new
