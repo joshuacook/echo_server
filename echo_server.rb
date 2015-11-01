@@ -23,10 +23,6 @@ post '/bundle' do
   { :destination_campaign_id => destination_campaign_id}.to_json
 end
 
-get '/' do
-  erb :index
-end
-
 post '/bundificate' do
   request.body.rewind
   request_payload = JSON.parse request.body.read
@@ -34,6 +30,22 @@ post '/bundificate' do
   destination_campaign_id = destination_campaign_ids[rand(5)]
   content_type :json
   { :destination_campaign_id_from_network => destination_campaign_id}.to_json
+end
+
+get '/' do
+  erb :index
+end
+
+get 'raise/200' do
+  status 200
+end
+
+get 'raise/400' do
+  status 400
+end
+
+get 'raise/500' do
+  status 500
 end
 
 __END__
