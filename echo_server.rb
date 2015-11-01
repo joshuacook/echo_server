@@ -1,8 +1,9 @@
 require 'sinatra'
 require 'json'
+require 'slim'
 
 get '/' do
-  erb :index
+  slim :index
 end
 
 post '/bundle' do
@@ -37,44 +38,8 @@ post '/promo' do
   { :destination_phone_number => destination_phone_number }.to_json
 end
 
-post '/raise/200' do
+post '/raise' do
   status 200
   body "Success.\n"
 end
 
-post '/raise/400' do
-  status 400
-  body "<pre>gclid</pre> not found.\n"
-end
-
-post '/raise/500' do
-  status 500
-  body "General error.\n"
-end
-
-__END__
-@@index
-<% title="Advertiser landing page" %>
-<!doctype html>
-<html lang="en">
-<head>
-  <title><%= title %></title>
-  <meta charset="utf-8">
-</head>
-<body>
-  <header>
-    <h1><%= title %></h1>
-    <h2>Hello, Deepti</h2>
-       <h2>Call now: <span>555-555-1234</span></h2>
-    <!-- Begin Call Tracking Code -->
-    <!-- Omit http from path to ensure protocol is same as current request -->
-    <script src="//sfapp.testring.com/10/integration.js"></script>
-    <script type="text/javascript">
-     Invoca.advertiser_integration = {
-      id : '26'
-     };
-    </script>
-    <!-- End Call Tracking Code -->
-  </header>
-</body>
-</html>
