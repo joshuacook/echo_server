@@ -2,10 +2,8 @@ require 'sinatra'
 require 'json'
 require 'slim'
 
-class Main < Sinatra::Base 
 get '/' do
-  "foo"
-  # slim :index
+  slim :index
 end
 
 post '/bundle' do
@@ -43,5 +41,4 @@ end
 post '/raise' do
   status 200
   body "Success.\n"
-end
 end
