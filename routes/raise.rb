@@ -2,7 +2,7 @@
 class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
-    input = request.body.read    
+    input = JSON.parse request.body.read
     puts input
     logger.debug "Handling 'hello world' request."
     logger.info input
