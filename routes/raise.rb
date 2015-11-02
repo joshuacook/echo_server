@@ -4,7 +4,7 @@ class MyApp < Sinatra::Application
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
-    if input['conversion'][0]['clickId'] == 'clid'
+    if input['conversion'][0]['clickId'] == 'goodclid'
       status 200
       body "Success."
     else
@@ -18,4 +18,4 @@ end
 
 # curl -H "Content-Type: application/json" -XPOST -d '{"kind"=>"doubleclicksearch#conversionList", "conversion"=>[{"clickId"=>"badclid_two", "conversionTimestamp"=>"1446415352900", "conversionId"=>"F77FE112-EA3ADD76", "segmentationType"=>"FLOODLIGHT", "segmentationName"=>"offline_calls_trans", "type"=>"TRANSACTION", "revenueMicros"=>"1000000", "currencyCode"=>"USD"}]}' http://dry-castle-8995.herokuapp.com/raise
 
-'{"kind"=>"doubleclicksearch#conversionList", "conversion"=>[{"clickId"=>"badclid_two", "conversionTimestamp"=>"1446415352900", "conversionId"=>"F77FE112-EA3ADD76", "segmentationType"=>"FLOODLIGHT", "segmentationName"=>"offline_calls_trans", "type"=>"TRANSACTION", "revenueMicros"=>"1000000", "currencyCode"=>"USD"}]}'
+# '{"kind"=>"doubleclicksearch#conversionList", "conversion"=>[{"clickId"=>"badclid_two", "conversionTimestamp"=>"1446415352900", "conversionId"=>"F77FE112-EA3ADD76", "segmentationType"=>"FLOODLIGHT", "segmentationName"=>"offline_calls_trans", "type"=>"TRANSACTION", "revenueMicros"=>"1000000", "currencyCode"=>"USD"}]}'
