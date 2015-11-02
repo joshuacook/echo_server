@@ -3,11 +3,14 @@ class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
-    logger.debug "Handling 'hello world' request."
-    logger.info input
-    logger.info input['conversion']
-    logger.info input['conversion'][0]
-    logger.info input['conversion'][0]['clickId']
+    logger.debug "Handling 'doubleclick' request."
+    if input['conversion'][0]['clickId'] == 'clid'
+      status 200
+      body "Success."
+    else
+      status 400
+      body "Womp womp, you fail."
+    end
   end
 end
 
