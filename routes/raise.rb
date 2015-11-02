@@ -5,7 +5,10 @@ class MyApp < Sinatra::Application
     input = request.body.read    
     puts input
     logger.debug "Handling 'hello world' request."
-    logger.info "Hello world."
+    logger.info input
+    logger.info input['conversion']
+    logger.info input['conversion'][0]
+    logger.info input['conversion'][0]['clickId']
   end
 end
 
