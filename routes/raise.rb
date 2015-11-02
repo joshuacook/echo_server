@@ -4,7 +4,7 @@ class MyApp < Sinatra::Application
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
-    input['conversion'][0]['clickId'] = clickId
+    clickId = input['conversion'][0]['clickId']
     if clickId == 'goodclid_uno'
       status 200
       body "Success."
