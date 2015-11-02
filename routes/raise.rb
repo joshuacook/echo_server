@@ -4,12 +4,16 @@ class MyApp < Sinatra::Application
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
-    if input['conversion'][0]['clickId'] == 'goodclid_uno'
+    input['conversion'][0]['clickId'] = clickId
+    if clickId == 'goodclid_uno'
       status 200
       body "Success."
-    elsif input['conversion'][0]['clickId'] == 'goodclid_dos'
+    elsif clickId == 'goodclid_dos'
       status 200
       body "Success."
+    elsif clickId == 'want500'
+      status 500
+      body "Dis is awful. Dis is just awful."
     else
       status 400
       body "Womp womp, you fail."
