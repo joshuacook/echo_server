@@ -8,7 +8,7 @@ class MyApp < Sinatra::Application
     if clickId == 'goodclid_uno'
       status 200
       body "Success."
-    elsif clickId == 'goodclid_dos'
+    elsif clickId == 'want500'
       status 200
       body "Success."
     elsif clickId == 'want500'
