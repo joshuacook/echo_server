@@ -1,9 +1,17 @@
 # encoding: utf-8
+
+
+
+get '/' do
+
+
 class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
     input = request.body.read    
     puts input
+    logger.debug "Handling 'hello world' request."
+    logger.info "Hello world."
   end
 end
 
