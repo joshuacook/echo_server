@@ -1,10 +1,4 @@
 # encoding: utf-8
-
-
-
-get '/' do
-
-
 class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
