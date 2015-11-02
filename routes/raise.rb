@@ -3,7 +3,7 @@ class MyApp < Sinatra::Application
   post '/raise' do
     request.body.rewind
     input = request.body.read    
-    input['conversion'][0]['clickId']
+    puts input
   end
 end
 
