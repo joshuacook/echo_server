@@ -10,16 +10,22 @@ html
       p A post to <code>/real_time_routing/bundle</code> with a JSON body containing <code>{"ids": #ARRAY#}</code> with an array of five integers will return <code>{"destination_campaign_id":#RANDOMLYSELECTEDINTEGER#}</code>.
       p Used to route a campaign by <code>destination_campaign_id</code>. 
       p Test the method with the following <code>curl</code> request:
-      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[80,81,79,34,32]}' http://dry-castle-8995.herokuapp.com/bundle
+      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[80,81,79,34,32]}' http://dry-castle-8995.herokuapp.com/real_time_routing/bundle
       
       h3 bundificate
       p A post to <code>/real_time_routing/bundificate</code> with a JSON body containing <code>{"ids": #ARRAY#}</code> with an array of five integers will return <code>{"destination_campaign_id_from_network":#RANDOMLYSELECTEDINTEGER#}</code>.
       p Used to route a campaign by <code>destination_campaign_id_from_network</code>. 
       p Test the method with the following <code>curl</code> request:
-      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[82420,84321,7964,3424,632]}' http://dry-castle-8995.herokuapp.com/bundificate
+      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[82420,84321,7964,3424,632]}' http://dry-castle-8995.herokuapp.com/real_time_routing/bundificate
       
       h3 promo
       p A post to <code>/real_time_routing/direct</code> with an empty JSON body will return <code>{"destination_phone_number":#RANDOMLYSELECTEDPHONENUMBER#}</code>, with a randomly selected weather telephone number. 
       p Used to route a campaign by <code>destination_phone_number</code>. 
       p Test the method with the following <code>curl</code> request:
-      pre curl -H "Content-Type: application/json" -XPOST -d '{}' http://dry-castle-8995.herokuapp.com/promo
+      pre curl -H "Content-Type: application/json" -XPOST -d '{}' http://dry-castle-8995.herokuapp.com/real_time_routing/promo
+
+      h3 extensions
+      p A post to <code>/real_time_routing/extensions</code> with an empty JSON body will return <code>{"destination_phone_number":#CAWEATHER#+'x,'#RANDOMINT#}</code>
+      p Used to route a campaign by <code>destination_phone_number</code>. 
+      p Test the method with the following <code>curl</code> request:
+      pre curl -H "Content-Type: application/json" -XPOST -d '{}' http://dry-castle-8995.herokuapp.com/real_time_routing/promo
