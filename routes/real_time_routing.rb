@@ -23,16 +23,16 @@ class MyApp < Sinatra::Application
     { :destination_campaign_id_from_network => destination_campaign_id}.to_json
   end
   
-  post '/real_time_routing/direct' do
+  post '/real_time_routing/promo' do
     destination_phone_numbers = ['+17074437062','+19072665145','+15132411010','+12076883210']
-    destination_phone_number = destination_phone_numbers[rand(4)]
+    destination_phone_number = destination_phone_numbers.sample
     content_type :json
     { :destination_phone_number => destination_phone_number }.to_json
   end
-  
-  post '/real_time_routing/promo' do
-    destination_phone_numbers = ['+17074437062','+19072665145','+15132411010','+12076883210']
-    destination_phone_number = destination_phone_numbers[rand(4)]
+
+  post '/real_time_routing/extensions' do
+    destination_phone_number = '+17074437062'
+    destination_phone_number = destination_phone_number + 'x,' + (rand(3)+1).to_s
     content_type :json
     { :destination_phone_number => destination_phone_number }.to_json
   end
