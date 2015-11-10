@@ -31,7 +31,7 @@ class MyApp < Sinatra::Application
   end
 
   post '/real_time_routing/extensions' do
-    destination_phone_number = '+16038281080'
+    destination_phone_number = '+17074437062'
     destination_phone_number = destination_phone_number + 'x,,,,' + (rand(3)+1).to_s
     content_type :json
     { :destination_phone_number => destination_phone_number }.to_json
