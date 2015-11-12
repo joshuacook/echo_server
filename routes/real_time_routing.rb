@@ -9,7 +9,7 @@ class MyApp < Sinatra::Application
     request.body.rewind
     request_payload = JSON.parse request.body.read
     destination_campaign_ids = request_payload['ids']
-    destination_campaign_id = destination_campaign_ids[rand(5)]
+    destination_campaign_id = destination_campaign_ids.sample
     content_type :json
     { :destination_campaign_id => destination_campaign_id}.to_json
   end
@@ -18,7 +18,7 @@ class MyApp < Sinatra::Application
     request.body.rewind
     request_payload = JSON.parse request.body.read
     destination_campaign_ids = request_payload['ids']
-    destination_campaign_id = destination_campaign_ids[rand(5)]
+    destination_campaign_id = destination_campaign_ids.sample
     content_type :json
     { :destination_campaign_id_from_network => destination_campaign_id}.to_json
   end
