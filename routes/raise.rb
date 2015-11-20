@@ -23,7 +23,7 @@ class MyApp < Sinatra::Application
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
-    status 400
+    status 200
     body "Going to change this in a moment"
   end
 end
