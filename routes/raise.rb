@@ -24,6 +24,6 @@ class MyApp < Sinatra::Application
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'custom' request."
     status 200
-    body "success
+    body "success"
   end
 end
