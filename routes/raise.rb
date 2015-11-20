@@ -1,6 +1,6 @@
 # encoding: utf-8
 class MyApp < Sinatra::Application
-  post '/raise' do
+  post '/doubleclick' do
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
@@ -18,6 +18,13 @@ class MyApp < Sinatra::Application
       status 400
       body "Womp womp, you fail."
     end
+  end
+  post '/custom' do
+    request.body.rewind
+    input = JSON.parse request.body.read.gsub('=>', ':')
+    logger.debug "Handling 'doubleclick' request."
+    status 400
+    body "Going to change this in a moment"
   end
 end
 
