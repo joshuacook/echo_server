@@ -14,4 +14,8 @@ To push our code to Heroku, we use the git push command:
 ## Checking Out the Log
 Heroku facilitates the viewing of log files with the command heroku logs:
 
-    $ heroku logs    
+    $ heroku logs   
+
+For tailing, often useful when watching for API communication
+
+    $ heroku logs --tail
