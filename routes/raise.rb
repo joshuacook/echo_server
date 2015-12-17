@@ -1,6 +1,6 @@
 # encoding: utf-8
 class MyApp < Sinatra::Application
-  post '/doubleclick' do
+  post '/raise' do
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')
     logger.debug "Handling 'doubleclick' request."
@@ -8,7 +8,7 @@ class MyApp < Sinatra::Application
     if clickId == 'goodclid_uno'
       status 200
       body "Success."
-    elsif clickId == 'want500'
+    elsif clickId == 'want200'
       status 200
       body "Success."
     elsif clickId == 'want500'

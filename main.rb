@@ -6,7 +6,9 @@ require 'logger'
 require 'nokogiri'
 
 require_relative 'routes/init'
-# require_relative 'lib'
+require_relative 'lib/handler'
+
+include Handler
 
 class MyApp < Sinatra::Application
   enable :logging
