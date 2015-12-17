@@ -5,7 +5,7 @@ class MyApp < Sinatra::Application
     slim :real_time_routing
   end
 
-  post '/real_time_routing/json/bundle' do
+  post '/real_time_routing/bundle' do
     request.body.rewind
     request_payload = JSON.parse request.body.read
     logger.debug request_payload
