@@ -3,6 +3,9 @@ GEM
   specs:
     json (1.8.3)
     logger (1.2.8)
+    mini_portile (0.6.2)
+    nokogiri (1.6.6.3)
+      mini_portile (~> 0.6.0)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -22,5 +25,6 @@ PLATFORMS
 DEPENDENCIES
   json
   logger
+  nokogiri
   sinatra (>= 1.4)
   slim

@@ -3,6 +3,10 @@ require 'sinatra'
 require 'json'
 require 'slim'
 require 'logger'
+require 'nokogiri'
+
+require_relative 'routes/init'
+require_relative 'lib'
 
 class MyApp < Sinatra::Application
   enable :logging
@@ -11,5 +15,3 @@ class MyApp < Sinatra::Application
     logger.level = Logger::DEBUG
   end
 end
-
-require_relative 'routes/init'
