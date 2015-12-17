@@ -27,6 +27,6 @@ logger.debug   request.secure?             # false (would be true over ssl)
 logger.debug   request.forwarded?          # true (if running behind a reverse proxy)
 logger.debug   request.env                 # raw env hash handed in by Rack
 logger.debug   get_payload(request)
-logger.debug   params[:xml]
+logger.debug   Nokogiri::XML(params[:xml])
 end
 
