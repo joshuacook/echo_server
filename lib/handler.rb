@@ -35,7 +35,7 @@ module Handler
   end
   
   def build_xml_response(key,value)
-    response = "<?xml version="1.0" encoding="UTF-8"?><#{key}>#{value}</#{key}>"
+    response = "<?xml version='1.0' encoding='UTF-8'?><#{key}>#{value}</#{key}>"
     logger.debug "responding with #{response} via xml"
     response
   end
