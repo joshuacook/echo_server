@@ -51,6 +51,10 @@ module Handler
     logger.debug "responding with #{response} via http post"
     response
   end
+  
+  
+
+
    
   def prepend_to_hooklog_txt(ip,method,request_format,payload)
     this_hook = "#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload  }\n"
@@ -81,8 +85,13 @@ module Handler
       content_type :json
       build_json_response(key,value)
     elsif response_format == 'http'
-      res = Net::HTTP.post_form URI("http://#{ip}"), build_http_response(key,value)
-      res.body
+      uri = URI("http://#{ip}")
+      http = Net::HTTP.new uri.host, uri.port
+      request = Net::HTTP::Post.new uri.request_uri
+      request.set_form_data build_http_response(key,value)
+      request.content_type = 'application/x-www-form-urlencoded'
+      response = http.request(request)
+      logger.debug response.code
     end
   end   
 end
