@@ -29,19 +29,25 @@ module Handler
   end 
   
   def build_json_response(key,value)
-    { key.to_sym => value }.to_json
+    response = { key.to_sym => value }.to_json
+    logger.debug response
+    response
   end
   
   def build_xml_response(key,value)
-    "<xml><#{key}>#{value}</#{key}></xml>"
+    response = "<xml><#{key}>#{value}</#{key}></xml>"
+    logger.debug response
+    response
   end
   
   def build_http_response(key,value)
-    { key.to_sym => value }
+    response = { key.to_sym => value }
+    logger.debug response
+    response
   end
    
   def prepend_to_hooklog_txt(ip,method,request_format,payload)
-    this_hook = "#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload}\n"
+    this_hook = "#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload  }\n"
     log       = `cat public/hooklog.txt`
     `echo "#{this_hook}#{log}" > public/hooklog.txt`
   end
