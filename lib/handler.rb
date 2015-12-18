@@ -47,7 +47,7 @@ module Handler
   end
   
   def build_http_response(key,value)
-    response = { key.to_sym => value }
+    response = "{ #{key} = #{value} }"
     logger.debug "responding with #{response} via http post"
     response
   end
