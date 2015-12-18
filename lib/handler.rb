@@ -82,7 +82,8 @@ module Handler
       build_json_response(key,value)
     elsif response_format == 'http'
       status 200
-      Net::HTTP.post_form URI("http://#{ip}"), build_http_response(key,value)
+      res = Net::HTTP.post_form URI("http://#{ip}"), build_http_response(key,value)
+      res.body
     end
   end   
 end
