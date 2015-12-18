@@ -30,19 +30,19 @@ module Handler
   
   def build_json_response(key,value)
     response = { key.to_sym => value }.to_json
-    logger.debug response
+    logger.debug "responding with #{response} via json"
     response
   end
   
   def build_xml_response(key,value)
     response = "<xml><#{key}>#{value}</#{key}></xml>"
-    logger.debug response
+    logger.debug "responding with #{response} via xml"
     response
   end
   
   def build_http_response(key,value)
     response = { key.to_sym => value }
-    logger.debug response
+    logger.debug "responding with #{response} via http post"
     response
   end
    
