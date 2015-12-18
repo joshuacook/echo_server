@@ -9,9 +9,11 @@ html
       h3 bundle
       p A post to <code>/real_time_routing/bundle</code> with a JSON body containing <code>{"ids": #ARRAY#}</code> with an array of five integers will return <code>{"destination_campaign_id":#RANDOMLYSELECTEDINTEGER#}</code>.
       p Used to route a campaign by <code>destination_campaign_id</code>. 
-      p Test the method with the following <code>curl</code> request:
-      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[80,81,79,34,32]}' http://dry-castle-8995.herokuapp.com/real_time_routing/bundle
-      
+      p Test the method with the following <code>curl</code> requests:
+      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[80,81,79,34,32]}' http://dry-castle-8995.herokuapp.com/real_time_routing/bundle.json
+      pre curl -H "Content-Type: application/xml" -XPOST -d "<xml><ids>[80,81,79,34,32]</ids></xml>" http://localhost:9292/building/foo.xml
+      pre curl -H "Content-Type: application/json" -XPOST -d '{"ids":[80,81,79,34,32]}' http://localhost:9292/building/foo.json
+      pre curl -d http://localhost:9292/building/foo.html?city=city,num=calling_phone_number,press=keypress_4
       h3 bundificate
       p A post to <code>/real_time_routing/bundificate</code> with a JSON body containing <code>{"ids": #ARRAY#}</code> with an array of five integers will return <code>{"destination_campaign_id_from_network":#RANDOMLYSELECTEDINTEGER#}</code>.
       p Used to route a campaign by <code>destination_campaign_id_from_network</code>. 
