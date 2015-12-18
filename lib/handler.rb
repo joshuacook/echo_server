@@ -6,8 +6,10 @@ module Handler
   end
   
   def parse_HTTP_params_to_Hash
-    logger.debug request.params
-    request.params
+    get_payload
+    request_payload = request.params
+    logger.debug request_payload
+    request_payload
   end
 
   def parse_JSON_payload_to_Hash
@@ -39,8 +41,9 @@ module Handler
   end
    
   def prepend_to_hooklog_txt(ip,method,request_format,payload)
-    `echo "\n#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload.to_s}" >> public/hooklog.txt`
-    #`{ echo #{Time.now}\t#{ip}\tmethod: #{method}\tformat: #{request_format}\tpayload: #{payload}; cat public/hooklog.txt; } > public/tmp.txt && mv public/tmp.txt public/hooklog.txt`
+    this_hook = "#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload}\n"
+    log       = `cat public/hooklog.txt`
+    `echo "#{this_hook}#{log}" > public/hooklog.txt`
   end
 
   def request_parser(path)
@@ -64,18 +67,9 @@ module Handler
       build_json_response(key,value)
     elsif response_format == 'http'
       status 200
-      Net::HTTP.post_form(ip,build_http_response(key,value))
+      Net::HTTP.post_form URI("http://#{ip}"), build_http_response(key,value)
     end
   end   
 end
 
 __END__
-curl -H "Content-Type: application/json" -XPOST -d '{"format":"http"}' http://localhost:9292/real_time_routing/destination_phone_number.json
-curl -H "Content-Type: application/xml" -XPOST -d '<xml><format>http</format></xml>' http://localhost:9292/real_time_routing/destination_phone_number.xml
-
-curl -H "Content-Type: application/json" -XPOST -d '{"format":"json"}' http://localhost:9292/real_time_routing/destination_phone_number.json
-curl -H "Content-Type: application/json" -XPOST -d '{"format":"xml"}' http://localhost:9292/real_time_routing/destination_phone_number.json
-curl -H "Content-Type: application/xml" -XPOST -d '<xml><format>json</format></xml>' http://localhost:9292/real_time_routing/destination_phone_number.xml
-curl -H "Content-Type: application/xml" -XPOST -d '<xml><format>xml</format></xml>' http://localhost:9292/real_time_routing/destination_phone_number.xml
-curl -H "Content-Type: application/json" -XPOST -d '{"format":"json","ids":[82420,84321,7964,3424,632]}' http://localhost:9292/real_time_routing/destination_campaign_id_from_network.json
-curl -H "Content-Type: application/json" -XPOST -d '{"format":"xml","ids":[82420,84321,7964,3424,632]}' http://localhost:9292/real_time_routing/destination_campaign_id_from_network.json
