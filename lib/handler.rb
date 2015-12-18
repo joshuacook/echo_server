@@ -41,7 +41,7 @@ module Handler
   end
   
   def build_xml_soap_response(key,value)
-    response = "<?xml version="1.0" encoding="UTF-8"?><soap12:Envelope xmlns:soap12='http://www.w3.org/2003/05/soap-envelope' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'><soap12:Body><#{key}>#{value}</#{key}>   </soap12:Body></soap12:Envelope>"
+    response = "<?xml version='1.0' encoding='UTF-8'?><soap12:Envelope xmlns:soap12='http://www.w3.org/2003/05/soap-envelope' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'><soap12:Body><#{key}>#{value}</#{key}>   </soap12:Body></soap12:Envelope>"
     logger.debug "responding with #{response} via xml-soap"
     response
   end
