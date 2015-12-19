@@ -47,7 +47,7 @@ module Handler
   end
   
   def build_http_response(key,value)
-    response = "{ '#{key}' = '#{value}' }"
+    response = "'#{key}' = '#{value}'"
     logger.debug "responding with #{response} via http post"
     response
   end
@@ -85,14 +85,9 @@ module Handler
       content_type :json
       build_json_response(key,value)
     elsif response_format == 'http'
-      `curl -d "#{build_http_response(key,value)}" "http://#{ip}"`
-#       uri = URI("http://#{ip}")
-#       http = Net::HTTP.new uri.host, uri.port
-#       request = Net::HTTP::Post.new uri.request_uri
-#       request.set_form_data build_http_response(key,value)
-#       request.content_type = 'application/x-www-form-urlencoded'
-#       response = http.request(request)
-#       logger.debug response.code
+      content_type 
+      status 200
+      build_http_response(key,value)
     end
   end   
 end
