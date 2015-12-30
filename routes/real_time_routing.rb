@@ -42,7 +42,7 @@ class MyApp < Sinatra::Application
     response_builder(response_format,"destination_phone_number",destination_phone_number,ip)
   end
 
-  get '/real_time_routing/destination_phone_number.html' do
+  get '/real_time_routing/destination_phone_number.*' do
     ip, method, media_type = basic_request_information  
     request_payload = request_parser(media_type)
     prepend_to_hooklog_txt ip,method,media_type,request_payload

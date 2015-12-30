@@ -22,7 +22,12 @@ module Handler
     request_payload = Hash.new
     fragments = Nokogiri::Slop(get_payload).xml.children
     fragments.each do |fragment|
-      request_payload[fragment.node_name] = fragment.content
+      n = fragment.content.length
+      if fragment.content[0]="[" and fragment.content[n-1]="]"
+        request_payload[fragment.node_name] = fragment.content.gsub(/\[|\]/,'').split(',').map(&:to_i) 
+      else
+        request_payload[fragment.node_name] = fragment.content
+      end
     end
     logger.debug request_payload
     return request_payload
