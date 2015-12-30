@@ -44,17 +44,7 @@ module Handler
     response = "<?xml version='1.0' encoding='UTF-8'?><soap12:Envelope xmlns:soap12='http://www.w3.org/2003/05/soap-envelope' xmlns:xsd='http://www.w3.org/2001/XMLSchema' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'><soap12:Body><#{key}>#{value}</#{key}>   </soap12:Body></soap12:Envelope>"
     logger.debug "responding with #{response} via xml-soap"
     response
-  end
-  
-  def build_http_response(key,value)
-    response = "'#{key}' = '#{value}'"
-    logger.debug "responding with #{response} via http post"
-    response
-  end
-  
-  
-
-
+  end    
    
   def prepend_to_hooklog_txt(ip,method,request_format,payload)
     this_hook = "#{Time.now}\t#{ip}\t#{method}\tformat: #{request_format.to_s}\tpayload: #{payload  }\n"
@@ -62,32 +52,31 @@ module Handler
     `echo "#{this_hook}#{log}" > public/hooklog.txt`
   end
 
-  def request_parser(path)
-    request_format = path.split('.')[1]
-    if request_format == 'xml'
+  def request_parser(media_type)
+    if media_type == 'application/xml'
       request_payload = parse_XML_payload_to_Hash
-    elsif request_format == 'json'
+    elsif media_type == 'application/json'
       request_payload = parse_JSON_payload_to_Hash
-    elsif request_format == 'html'
+    elsif media_type == 'text/plain'
       request_payload = parse_HTTP_params_to_Hash
     end 
-    return request_format, request_payload
+    return request_payload
   end 
+  
+  def get_response_format(path)
+    path.split('.')[1]
+  end
   
   def response_builder(response_format,key,value,ip)
     if response_format == 'xml'
       content_type 'text/xml'
       build_xml_response(key,value)
-    elsif response_format == 'xml-soap'
+    elsif response_format == 'xml_soap'
       content_type 'text/xml'
-      build_xml_response(key,value)
+      build_xml_soap_response(key,value)
     elsif response_format == 'json'
       content_type :json
       build_json_response(key,value)
-    elsif response_format == 'http'
-      content_type 
-      status 200
-      build_http_response(key,value)
     end
   end   
 end

@@ -12,6 +12,6 @@ module StandardLogging
     logger.debug   "url: #{request.url}"
     logger.debug   "path: #{request.path}"
     logger.debug   "ip: #{request.ip}"
-    return request.ip, request.request_method
+    return request.ip, request.request_method, request.media_type
   end
 end

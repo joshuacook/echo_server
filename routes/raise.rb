@@ -19,6 +19,7 @@ class MyApp < Sinatra::Application
       body "Womp womp, you fail."
     end
   end
+  
   post '/custom' do
     request.body.rewind
     input = JSON.parse request.body.read.gsub('=>', ':')

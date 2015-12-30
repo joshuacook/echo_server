@@ -1,5 +1,4 @@
 # encoding: utf-8
-require_relative 'building'
 require_relative 'main'
 require_relative 'pretransfer'
 require_relative 'raise'
