@@ -7,7 +7,16 @@ module Handler
   
   def parse_HTTP_params_to_Hash
     get_payload
-    request_payload = request.params
+    request_payload = Hash.new
+    request.params.each do |key,value|
+      n = value.length
+      if value[0]="[" and value[n-1]="]"
+        request_payload[key] = value.gsub(/\[|\]/,'').split(',').map(&:to_i) 
+      else
+        request_payload[key] = value
+      end
+    end
+    
     logger.debug request_payload
     request_payload
   end

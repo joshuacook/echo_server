@@ -6,6 +6,7 @@ require 'logger'
 require 'nokogiri'
 require "net/http"
 require "uri"
+require "sinatra/multi_route"
 require "sinatra/reloader" if development?
 
 require_relative 'routes/init'
