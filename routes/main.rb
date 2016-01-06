@@ -7,4 +7,8 @@ class MyApp < Sinatra::Application
   get "/adwords" do
     slim :adwords
   end
+
+  get "/ds3" do
+    slim :ds3
+  end
 end
