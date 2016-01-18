@@ -8,6 +8,7 @@ module Handler
   def parse_HTTP_params_to_Hash
     this_request = get_payload
     request_payload = Hash.new
+    logger.debug this_request
     request_payload['ids'] = this_request.gsub(/ids=/,'').split('&').map(&:to_s)    
     logger.debug request_payload
     request_payload
