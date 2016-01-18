@@ -59,3 +59,4 @@ __END__
 
 curl -H "Content-Type: text/plain" -POST https://tranquil-forest-4681.herokuapp.com/real_time_routing/destination_campaign_id.json -d "<xml><ids>[1,2,3,4]</ids></xml>"
 curl -H "Content-Type: application/json" -POST https://tranquil-forest-4681.herokuapp.com/real_time_routing/destination_campaign_id.json -d "{"ids": [1,2,3,4]}"
+curl -H "Content-Type: text/plain" -POST https://dry-castle-8995.herokuapp.com/real_time_routing/destination_campaign_id.json -d "<xml><ids>[1,2,3,4]</ids></xml>"

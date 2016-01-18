@@ -8,6 +8,7 @@ module Handler
   def parse_HTTP_params_to_Hash
     get_payload
     request_payload = Hash.new
+    logger.debug "request_payload #{request_payload}"
     request.params.each do |key,value|
       n = value.length
       if value[0]="[" and value[n-1]="]"
@@ -43,7 +44,7 @@ module Handler
   end 
   
   def build_json_response(key,value)
-    response = { key.to_sym => value }.to_json
+    response = { key.to_sym => value }.to_json # {'destintion_phone_number' : '895
     logger.debug "responding with #{response} via json"
     response
   end
