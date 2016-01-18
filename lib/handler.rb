@@ -6,9 +6,9 @@ module Handler
   end
   
   def parse_HTTP_params_to_Hash
-    request = get_payload
+    this_request = get_payload
     request_payload = Hash.new
-    logger.debug "request_payload #{request.body}"
+    logger.debug "request_payload #{this_request.body}"
     request.params.each do |key,value|
       n = value.length
       if value[0]="[" and value[n-1]="]"
