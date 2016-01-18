@@ -29,17 +29,8 @@ module Handler
   end
 
   def parse_XML_payload_to_Hash
-    request_payload = Hash.new
-    fragments = Nokogiri::Slop(get_payload).xml.children
-    logger.debug "request_payload #{fragments}"
-    fragments.each do |fragment|
-      n = fragment.content.length
-      if fragment.content[0]="[" and fragment.content[n-1]="]"
-        request_payload[fragment.node_name] = fragment.content.gsub(/\[|\]/,'').split(',').map(&:to_i) 
-      else
-        request_payload[fragment.node_name] = fragment.content
-      end
-    end
+    fragments = Nokogiri::XML(get_payload)
+    request_payload = fragment.search('bundled_destination_id').map(&:text)
     logger.debug request_payload
     return request_payload
   end 
