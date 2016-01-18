@@ -8,8 +8,16 @@ module Handler
   def parse_HTTP_params_to_Hash
     this_request = get_payload
     request_payload = Hash.new
-    logger.debug request.query_string
+    
     request_payload['ids'] = this_request.gsub(/ids=/,'').split('&').map(&:to_s)    
+    logger.debug request_payload
+    request_payload
+  end
+  
+  def parse_URL_query_string_to_Hash
+    request_payload = Hash.new
+    ids_string = request.query_string
+    request_payload['ids'] = ids_string.gsub(/ids=/,'').split('&').map(&:to_s)    
     logger.debug request_payload
     request_payload
   end
@@ -58,8 +66,10 @@ module Handler
       request_payload = parse_XML_payload_to_Hash
     elsif media_type == 'application/json'
       request_payload = parse_JSON_payload_to_Hash
-    elsif media_type == 'application/x-www-form-urlencoded' or media_type == 'text/plain'
+    elsif media_type == 'application/x-www-form-urlencoded'
       request_payload = parse_HTTP_params_to_Hash
+    elsif media_type == 'text/plain'
+      request_payload = parse_URL_query_string_to_Hash
     end 
     return request_payload
   end 
