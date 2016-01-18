@@ -29,8 +29,8 @@ module Handler
   end
 
   def parse_XML_payload_to_Hash
-    fragments = Nokogiri::XML(get_payload)
-    request_payload = fragment.search('bundled_destination_id').map(&:text)
+    noko_object = Nokogiri::XML(get_payload)
+    request_payload = noko_object.search('bundled_destination_id').map(&:text)
     logger.debug request_payload
     return request_payload
   end 
