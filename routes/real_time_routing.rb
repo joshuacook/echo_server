@@ -44,19 +44,3 @@ class MyApp < Sinatra::Application
     response_builder(response_format,"destination_phone_number",destination_phone_number,ip)
   end
 end 
-
-__END__
-
-#   post '/real_time_routing/extensions' do
-#     basic_request_information  
-#     request_payload = format_handler(request.path)
-#      
-#     destination_phone_number = '+18554474133'
-#     destination_phone_number = destination_phone_number + 'x,,,,' + 1.to_s
-#     content_type :json
-#       { :destination_phone_number => destination_phone_number }.to_json
-#   end
-
-curl -H "Content-Type: text/plain" -POST https://tranquil-forest-4681.herokuapp.com/real_time_routing/destination_campaign_id.json -d "<xml><ids>[1,2,3,4]</ids></xml>"
-curl -H "Content-Type: application/json" -POST https://tranquil-forest-4681.herokuapp.com/real_time_routing/destination_campaign_id.json -d "{"ids": [1,2,3,4]}"
-curl -H "Content-Type: text/plain" -POST https://dry-castle-8995.herokuapp.com/real_time_routing/destination_campaign_id.json -d "<xml><ids>[1,2,3,4]</ids></xml>"
