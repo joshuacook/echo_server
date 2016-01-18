@@ -66,7 +66,7 @@ module Handler
       request_payload = parse_XML_payload_to_Hash
     elsif media_type == 'application/json'
       request_payload = parse_JSON_payload_to_Hash
-    elsif media_type == 'text/plain'
+    elsif media_type == 'application/x-www-form-urlencoded'
       request_payload = parse_HTTP_params_to_Hash
     end 
     return request_payload
