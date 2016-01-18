@@ -30,8 +30,8 @@ module Handler
 
   def parse_XML_payload_to_Hash
     request_payload = Hash.new
-    logger.debug "request_payload #{request_payload}"
     fragments = Nokogiri::Slop(get_payload).xml.children
+    logger.debug "request_payload #{fragments}"
     fragments.each do |fragment|
       n = fragment.content.length
       if fragment.content[0]="[" and fragment.content[n-1]="]"
