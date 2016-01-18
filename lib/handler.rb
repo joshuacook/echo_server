@@ -6,7 +6,7 @@ module Handler
   end
   
   def parse_HTTP_params_to_Hash
-    get_payload
+    request = get_payload
     request_payload = Hash.new
     logger.debug "request_payload #{request.params}"
     request.params.each do |key,value|
